@@ -1,4 +1,5 @@
 class Saludo{
+  PImage Saludos;
   void setup(){
     size(900,600);
     Saludos=loadImage("Saludos.png");
