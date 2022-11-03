@@ -2,7 +2,7 @@ import TUIO.*;
 //Declaracion de variables
 TuioProcessing tuio;
 PImage Inicio, Saludos, Preguntas, Dias, Numeros;
-
+//buscar como usar varias clases desde aquí
 //Configurar la ventan
 void setup(){
   size(900,600);
