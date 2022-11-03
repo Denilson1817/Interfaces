@@ -1,5 +1,4 @@
 class Numero{
-  PImage Numeros;
   void setup(){
     size(900,600);
     Numeros=loadImage("Numeros.png");  

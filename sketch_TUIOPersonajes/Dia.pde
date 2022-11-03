@@ -1,6 +1,6 @@
 
 class Dia{  
- PImage  Dias; 
+  
   void setup(){
   size(900,600);
   Dias=loadImage("Dias.png");
