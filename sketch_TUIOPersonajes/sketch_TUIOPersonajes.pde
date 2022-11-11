@@ -4,20 +4,33 @@ TuioProcessing tuio;
 
 import gifAnimation.*;
 
-
+//GIFs de la ventana numero Uno///////////////////////////////////////////////////////////
 Gif numeroUno;
 Gif numeroDos;
+Gif numeroTres;
+Gif numeroCuatro;
+Gif numeroCinco;
+Gif numeroSeis;
+Gif numeroSiete;
+Gif numeroOcho;
+Gif numeroNueve;
+Gif numeroDiez;
 
-//Objetos de las clases
+//Objetos de las clases para las ventanas////////////////////////////////////////////////
 Dia dia = new Dia();
 Numero numero = new Numero();
 Saludo saludo = new Saludo();
 Pregunta pregunta = new Pregunta();
-boolean banderaPantalla = true;
-boolean numero0 = false;
+
+boolean banderaPantalla = true;//Bandera para el cambio de pantallas
+
+boolean numero0 = false;//Bandera para eliminación del GIF de la ventana
+
 int contador = 2;
-int contadorNumero = 0;
-PImage Inicio, Saludos, Preguntas, Dias, Numeros;
+
+int contadorNumero = 0;//Este contador es para mostrar los GIF en la pantalla de números
+
+PImage Inicio, Saludos, Preguntas, Dias, Numeros;//PImage para las pantallas
 TuioObject objectTUIO;
 
 void setup(){
@@ -25,34 +38,62 @@ void setup(){
   //Crear un objeto TUIO
   tuio = new TuioProcessing(this);
   Inicio=loadImage("Inicio.png");
-  
+  ///Llamado de las clases///////////////////////////////////////////////////////////////////////////////////////////// 
   dia.setup();
   pregunta.setup();
   numero.setup();
   saludo.setup();
   //Dibujar la ventana
   image(Inicio,0,0);
-  ////////////////////////////////////////////////////////////////////77
+  /////GIFs de números///////////////////////////////////////////////////////////////////////////////////////////////
     numeroUno =  new Gif(this, "Uno.gif" );
     numeroUno.play();
     numeroDos = new Gif(this, "Dos.gif");
     numeroDos.play();
+    numeroTres = new Gif(this, "Tres.gif");
+    numeroTres.play();
+    numeroCuatro = new Gif(this, "Cuatro.gif");
+    numeroCuatro.play();
+    numeroCinco = new Gif(this, "Cinco.gif");
+    numeroCinco.play();
+    numeroSeis = new Gif(this, "Seis.gif");
+    numeroSeis.play();
+    numeroSiete = new Gif(this, "Siete.gif");
+    numeroSiete.play();
+    numeroOcho = new Gif(this, "Ocho.gif");
+    numeroOcho.play();
+    numeroNueve = new Gif(this, "Nueve.gif");
+    numeroNueve.play();
+    numeroDiez = new Gif(this, "Diez.gif");
+    numeroDiez.play();
+    
+    
     numero.setup();
 }
 
-//Dibujar la ventana
+//Dibujar los GIFs
 void draw(){
-  //
-
-  //if(contador == 6){
-   //numerosChidos();
- // }
+   //////////if para la aparición de los números////////////////////////////////////////////////////////////////
   if (contador == 6 && numero0 == true && contadorNumero == 1){
-    numerosUno();
-    
+    numerosUno();    
   }else if(contador == 6 && numero0 == true && contadorNumero == 2){
-    numerosDos();
-    
+    numerosDos();    
+  }else if(contador == 6 && numero0 == true && contadorNumero == 3){
+    numerosTres();    
+  }else if(contador == 6 && numero0 == true && contadorNumero == 4){
+    numerosCuatro();    
+  }else if(contador == 6 && numero0 == true && contadorNumero == 5){
+    numerosCinco();    
+  }else if(contador == 6 && numero0 == true && contadorNumero == 6){
+    numerosSeis();    
+  }else if(contador == 6 && numero0 == true && contadorNumero == 7){
+    numerosSiete();    
+  }else if(contador == 6 && numero0 == true && contadorNumero == 8){
+    numerosOcho();    
+  }else if(contador == 6 && numero0 == true && contadorNumero == 9){
+    numerosNueve();    
+  }else if(contador == 6 && numero0 == true && contadorNumero == 10){
+    numerosDiez();    
   }
   if(contador == 6 && numero0 == false){
         numero.pantallaNumero();
@@ -106,22 +147,20 @@ void mouseClicked(){
   } 
 
 }
+//////////////////////Funciones para mandar a llamar loS GIFs de los números/////////////////
+void numerosUno(){image(numeroUno, 200, 180, width = 400, height = 300);}
+void numerosDos(){image(numeroDos, 200, 180, width = 400, height = 300);}
+void numerosTres(){image(numeroTres, 200, 180, width = 400, height = 300);}
+void numerosCuatro(){image(numeroCuatro, 200, 180, width = 400, height = 300);}
+void numerosCinco(){image(numeroCinco, 200, 180, width = 400, height = 300);}
+void numerosSeis(){image(numeroSeis, 200, 180, width = 400, height = 300);}
+void numerosSiete(){image(numeroSiete, 200, 180, width = 400, height = 300);}
+void numerosOcho(){image(numeroOcho, 200, 180, width = 400, height = 300);}
+void numerosNueve(){image(numeroNueve, 200, 180, width = 400, height = 300);}
+void numerosDiez(){image(numeroDiez, 200, 180, width = 400, height = 300);}
 
-void numerosUno(){
 
-    image(numeroUno, 200, 180, width = 400, height = 300);
-    
-
- 
-}
-void numerosDos(){
-
-    image(numeroDos, 200, 180, width = 400, height = 300);
-    
-
- 
-}
-
+////Esta función no la deben modificar///////////////////////////////////////////////////////////////////777
 void addTuioObject(TuioObject objectTUIO){
   int idObjeto = objectTUIO.getSymbolID();
   println("Objeto con ID "+ idObjeto + " detectado en posición X "+objectTUIO.getX()+
@@ -130,6 +169,7 @@ void addTuioObject(TuioObject objectTUIO){
 
 void updateTuioObject (TuioObject objectTUIO){
   int idObjeto = objectTUIO.getSymbolID();
+  ///////if para la detectar el id de Fiducial---> Agreguen el suyo, pero creen una bandera diferente para el de ustedes
   if(idObjeto == 0){
     numero0 = true;
     contadorNumero = 1;
@@ -138,18 +178,57 @@ void updateTuioObject (TuioObject objectTUIO){
     numero0 = true;
     contadorNumero = 2;
   }
+  else if(idObjeto == 2){
+    numero0 = true;
+    contadorNumero = 3;
+  }else if(idObjeto == 3){
+    numero0 = true;
+    contadorNumero = 4;
+  }else if(idObjeto == 4){
+    numero0 = true;
+    contadorNumero = 5;
+  }else if(idObjeto == 5){
+    numero0 = true;
+    contadorNumero = 6;
+  }else if(idObjeto == 6){
+    numero0 = true;
+    contadorNumero = 7;
+  }else if(idObjeto == 7){
+    numero0 = true;
+    contadorNumero = 8;
+  }else if(idObjeto == 8){
+    numero0 = true;
+    contadorNumero = 9;
+  }else if(idObjeto == 9){
+    numero0 = true;
+    contadorNumero = 10;
+  }
 }
 
 void removeTuioObject(TuioObject objectTuio){
   println("Objeto fuera "+objectTuio.getSymbolID());
   int idObjeto = objectTuio.getSymbolID();
+  ///////if para la detectar el id de Fiducial---> Agreguen el suyo, pero creen una bandera diferente para el de ustedes
   if(idObjeto == 0){
     numero0 = false; 
-    //dispose();
-  }
-  else if(idObjeto == 1){
-    numero0 = false;
-    
+  }else if(idObjeto == 1){
+    numero0 = false;  
+  }else if(idObjeto == 2){
+    numero0 = false; 
+  }else if(idObjeto == 3){
+    numero0 = false; 
+  }else if(idObjeto == 4){
+    numero0 = false; 
+  }else if(idObjeto == 5){
+    numero0 = false; 
+  }else if(idObjeto == 6){
+    numero0 = false; 
+  }else if(idObjeto == 7){
+    numero0 = false; 
+  }else if(idObjeto == 8){
+    numero0 = false; 
+  }else if(idObjeto == 9){
+    numero0 = false; 
   }
 }
 
