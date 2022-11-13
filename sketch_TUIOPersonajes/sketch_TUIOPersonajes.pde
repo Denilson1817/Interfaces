@@ -16,6 +16,16 @@ Gif numeroOcho;
 Gif numeroNueve;
 Gif numeroDiez;
 
+//GIFS de la ventana Dias////////////////////////////////////////////////////////////////
+Gif lunes;
+Gif martes;
+Gif miercoles;
+Gif jueves;
+Gif viernes;
+Gif sabado;
+Gif domingo;
+
+
 //Objetos de las clases para las ventanas////////////////////////////////////////////////
 Dia dia = new Dia();
 Numero numero = new Numero();
@@ -23,12 +33,13 @@ Saludo saludo = new Saludo();
 Pregunta pregunta = new Pregunta();
 
 boolean banderaPantalla = true;//Bandera para el cambio de pantallas
-
 boolean numero0 = false;//Bandera para eliminación del GIF de la ventana
-
 int contador = 2;
-
 int contadorNumero = 0;//Este contador es para mostrar los GIF en la pantalla de números
+
+
+int contadorDia = 0;//Contador para mostrar los GIF en la pantalla de dias
+boolean banderaDia = false; //Bandera para eliminación del GIF dia
 
 PImage Inicio, Saludos, Preguntas, Dias, Numeros;//PImage para las pantallas
 TuioObject objectTUIO;
@@ -67,9 +78,29 @@ void setup(){
     numeroDiez = new Gif(this, "Diez.gif");
     numeroDiez.play();
     
+    //GIFs de dias////////////////////////////////////////////////////////////////////////////////////////////////
+    lunes =  new Gif(this, "Lunes.gif" );
+    lunes.play();
+    martes = new Gif(this, "Martes.gif");
+    martes.play();
+    miercoles = new Gif(this, "Miercoles.gif");
+    miercoles.play();
+    jueves = new Gif(this, "jueves.gif");
+    jueves.play();
+    viernes = new Gif(this, "viernes.gif");
+    viernes.play();
+    sabado = new Gif(this, "sabado.gif");
+    sabado.play();
+    domingo = new Gif(this, "domingo.gif");
+    domingo.play();
+    
+    
     
     numero.setup();
 }
+
+
+
 
 //Dibujar los GIFs
 void draw(){
@@ -98,6 +129,8 @@ void draw(){
   if(contador == 6 && numero0 == false){
         numero.pantallaNumero();
   }
+  //metodo para dibujar los dias de la semana
+  dibujaDia();
 }
 
 //Metodo Inicio
@@ -160,6 +193,17 @@ void numerosNueve(){image(numeroNueve, 200, 180, width = 400, height = 300);}
 void numerosDiez(){image(numeroDiez, 200, 180, width = 400, height = 300);}
 
 
+//////////////////////Funciones para mandar a llamar loS GIFs de los dias/////////////////
+void loadLunes(){image(lunes, 200, 180, width = 400, height = 300);}
+void loadMartes(){image(martes, 200, 180, width = 400, height = 300);}
+void loadMiercoles(){image(miercoles, 200, 180, width = 400, height = 300);}
+void loadJueves(){image(jueves, 200, 180, width = 400, height = 300);}
+void loadViernes(){image(viernes, 200, 180, width = 400, height = 300);}
+void loadSabado(){image(sabado, 200, 180, width = 400, height = 300);}
+void loadDomingo(){image(domingo, 200, 180, width = 400, height = 300);}
+
+
+
 ////Esta función no la deben modificar///////////////////////////////////////////////////////////////////777
 void addTuioObject(TuioObject objectTUIO){
   int idObjeto = objectTUIO.getSymbolID();
@@ -203,6 +247,12 @@ void updateTuioObject (TuioObject objectTUIO){
     numero0 = true;
     contadorNumero = 10;
   }
+  
+  
+  
+  
+  //dia
+  onIdDia(idObjeto);
 }
 
 void removeTuioObject(TuioObject objectTuio){
@@ -230,9 +280,112 @@ void removeTuioObject(TuioObject objectTuio){
   }else if(idObjeto == 9){
     numero0 = false; 
   }
+  
+  offIdDia(idObjeto);
 }
 
 void refresh(TuioTime frameTame){
   redraw();
   
+}
+
+
+
+
+void dibujaDia(){
+  
+  if (contador == 6 && numero0 == true && contadorDia == 1){
+    loadLunes();    
+  }else if(contador == 6 && numero0 == true && contadorDia == 2){
+    loadMartes();    
+  }else if(contador == 6 && numero0 == true && contadorDia == 3){
+    loadMiercoles();    
+  }else if(contador == 6 && numero0 == true && contadorDia == 4){
+    loadJueves();    
+  }else if(contador == 6 && numero0 == true && contadorDia == 5){
+    loadViernes();    
+  }else if(contador == 6 && numero0 == true && contadorDia == 6){
+    loadSabado();    
+  }else if(contador == 6 && numero0 == true && contadorDia == 7){
+    loadDomingo();    
+  }
+  if(contador == 6 && numero0 == false){
+        dia.pantallaDia();
+  }
+  
+  
+}
+
+int onIdDia(int idObjeto){
+  
+  if(idObjeto == 12){
+    banderaDia = true;
+    contadorDia = 1;
+ 
+  }else if(idObjeto == 13){
+    banderaDia = true;
+    contadorDia = 2;
+  }
+  else if(idObjeto == 14){
+    banderaDia = true;
+    contadorDia = 3;
+  }else if(idObjeto == 15){
+    banderaDia = true;
+    contadorDia = 4;
+    
+  }else if(idObjeto == 16){
+    banderaDia = true;
+    contadorDia = 5;
+  }else if(idObjeto == 17){
+    banderaDia = true;
+    contadorDia = 6;
+    
+  }else if(idObjeto == 18){
+    banderaDia = true;
+    contadorDia = 7;
+  }else if(idObjeto == 18){
+    banderaDia = true;
+    contadorDia = 8;
+  }
+  
+  
+  return idObjeto;
+}
+
+
+
+int offIdDia(int idObjeto){
+  
+  if(idObjeto == 12){
+    banderaDia = false;
+
+ 
+  }else if(idObjeto == 13){
+    banderaDia = false;
+    
+  }
+  else if(idObjeto == 14){
+    banderaDia = false;
+   
+  }else if(idObjeto == 15){
+    banderaDia = false;
+    
+    
+  }else if(idObjeto == 16){
+    banderaDia = false;
+    
+  }else if(idObjeto == 17){
+    banderaDia = false;
+    
+    
+  }else if(idObjeto == 18){
+    banderaDia = false;
+    
+  }else if(idObjeto == 18){
+    banderaDia = false;
+    
+  }
+  
+  
+  return idObjeto;
 }
